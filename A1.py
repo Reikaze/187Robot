@@ -79,37 +79,41 @@ GPIO.output(out1,GPIO.LOW)
 GPIO.output(out2,GPIO.LOW)
 GPIO.output(out3,GPIO.LOW)
 GPIO.output(out4,GPIO.LOW)
-p=GPIO.PWM(enA,500)
-q=GPIO.PWM(enB,500)
+p=GPIO.PWM(enA,1000)
+q=GPIO.PWM(enB,1000)
 #start function
-p.start(73)#right
-q.start(79)#left 
+p.start(60)#right
+q.start(60)#left 
 print("\n")
 print("The default speed & direction of motor SSSis LOW & Forward.....")
 print("g-go s-stop b-backward f-forward l-left r-right e-exit")
 print("\n")    
 
+
+
 while(1):
-  
-  #user Control
-    x=input()
-    #Go motor forward
-    if x=="g":
-      forward()
-    #Go motor backwards
-    elif x == "b":
-      backward()
-  #Stops go motor
-    if x=="s":
-      stop()
-  #left
-    if x =="l":
-      left()
-  #right
-    if x == "r":
-      right()
-  #End Program
-    if x=="e":
-        GPIO.cleanup()
-        print("GPIO Clean up")
-        break
+	
+	x = str(input("ENTER CMD\n"))
+ #~ ''' if (x.lower() =="g" or x.lower() =="s" or x.lower() =="b" or x.lower() =="f" or x.lower() =="l"
+   #~ or x.lower() =="r" or x.lower() =="e"):'''
+
+	#Go motor forward
+	if(x == 'g'):
+		forward()
+	#Go motor backwards
+	elif (x == 'b'):
+		backward()
+	#Stops go motor
+	if (x == 's'):
+		stop()
+	#left
+	if (x == 'l'):
+		left()
+	#right
+	if (x == 'r'):	
+		right()
+	#End Program
+	if (x == 'e'):
+		GPIO.cleanup()
+		print("GPIO Clean up")
+	#        break

@@ -1,6 +1,6 @@
 #******************************************
 #*Programmers: Kevin Mai and Geff Freire  *
-#*Program 3: A3.py                        *
+#*Program 2: A3.py                        *
 #*Lab 3                                   *
 #*Class: EEE 187L (Group Johnny 5)        *
 #*Date: October 2, 2019	                  *
@@ -42,7 +42,7 @@ def left():
 def right():
   print("go right")
   GPIO.output(out1,GPIO.LOW)
-  GPIO.output(out2,GPIO.HIGH)
+  GPIO.output(out2,GPIO.LOW)
   GPIO.output(out3,GPIO.LOW)
   GPIO.output(out4,GPIO.HIGH)
   print("right")
@@ -78,9 +78,9 @@ out4 = 7 #left wheel +
 enA = 21 #enable 1 & 2
 enB = 8  #enable 3 & 4
 
-left_sensor = 26 #left QTI
-center_sensor = 25
-right_sensor = 24 #right QTI
+left_sensor = 13 #left QTI
+center_sensor = 19
+right_sensor = 26 #right QTI
 
 #GPIO Setup
 GPIO.setwarnings(False)
@@ -94,6 +94,11 @@ GPIO.setup(enB,GPIO.OUT)
 GPIO.setup(left_sensor, GPIO.IN)
 GPIO.setup(center_sensor, GPIO.IN)
 GPIO.setup(right_sensor, GPIO.IN)
+GPIO.setup(TriggerI,GPIO.OUT)
+GPIO.setup(TriggerII,GPIO.OUT)
+GPIO.setup(EchoI,GPIO.IN)
+GPIO.setup(EchoII,GPIO.IN)
+
 GPIO.output(out1,GPIO.LOW)
 GPIO.output(out2,GPIO.LOW)
 GPIO.output(out3,GPIO.LOW)
@@ -101,8 +106,8 @@ GPIO.output(out4,GPIO.LOW)
 p=GPIO.PWM(enA,500)
 q=GPIO.PWM(enB,500)
 #start function
-p.start(50)#right (Magic: 74 (p) and 79 (q)))
-q.start(55)#left 
+p.start(74)#right (Magic: 74 (p) and 79 (q)))
+q.start(79)#left 
 print("hi\n")
 print("The default speed & direction of motor is LOW & Forward.....")
 print("g-go s-stop b-backward f-forward l-left r-right e-exit")
@@ -110,19 +115,6 @@ print("\n")
 
 
 while(1):
-	if (GPIO.input(left_sensor) ==0 & GPIO.input(center_sensor) == 0 & GPIO.input(right_sensor)==0):
-		right()
-		sleep(.05)
-		print("error")
-	if GPIO.input(center_sensor):
-		forward()
-		sleep(.1)
-	if GPIO.input(left_sensor):
-		left()
-		sleep(.15)
-	if (GPIO.input(left_sensor) ==0 & GPIO.input(center_sensor) == 0 &  GPIO.input(right_sensor)==1):
-		right()
-		sleep(.15)
-	print ("Sensors: Left = %b, Center = %b, Right = %b", GPIO.input(left_sensor), GPIO.input(center_sensor), GPIO.input(right_sensor))
-	stop()
-	sleep(.01)
+
+		
+
